@@ -10,7 +10,7 @@ x = layers.Conv2D(8, kernel_size=(7, 7), padding="valid", activation=activations
 x = layers.MaxPooling2D(pool_size=(2, 2), strides=1)(x)
 x = layers.Conv2D(16, kernel_size=(5, 5), activation=activations.leaky_relu)(x)
 x = layers.MaxPooling2D(pool_size=(2, 2), strides=1)(x)
-x = layers.Conv2D(32, kernel_size=(3, 3), activation=activations.leaky_relu)(x)
+x = layers.Conv2D(32, kernel_size=(3, 3), activation="softmax")(x)
 x = layers.MaxPooling2D(pool_size=(3, 3), strides=1)(x)
 x = layers.Conv2D(32, kernel_size=(3, 3), activation=activations.leaky_relu)(x)
 x = layers.MaxPooling2D(pool_size=(3, 3), strides=1)(x)
