@@ -34,13 +34,6 @@ y_coord = layers.Dense(1, name="y_coord")(x)
 
 model = keras.Model(inputs=inputs, outputs=[click_type, keys, x_coord, y_coord])
 
-model = model.to_json()
-with open("model_7.json", "w") as json_file:
-    json_file.write(model)
-
-model.summary()
-
-'''
 model.compile(
     optimizer=keras.optimizers.Adam(),
     loss={
@@ -56,7 +49,10 @@ model.compile(
         "number2": "mae",
     },
 )
-'''
 
+model.summary()
 
+model = model.to_json()
+with open("model_7.json", "w") as json_file:
+    json_file.write(model)
 
