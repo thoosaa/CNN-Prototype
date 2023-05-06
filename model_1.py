@@ -58,7 +58,7 @@ model.compile(
 model.summary()
 
 model = model.to_json()
-with open("model_2.json", "w") as json_file:
+with open("model_1.json", "w") as json_file:
     json_file.write(model)
 
 
