@@ -13,11 +13,11 @@ def build_model():
 
     inputs = Input(shape=input_shape)
 
-    conv = Conv2D(16, kernel_size=(3, 3), activation='relu', padding='same')(inputs)
+    conv = Conv2D(16, kernel_size=(3, 3), activation=activations.relu, padding='same')(inputs)
     conv = MaxPooling2D(pool_size=(3, 3), strides=2)(conv)
-    conv = Conv2D(32, kernel_size=(3, 3), activation='relu', padding='same')(conv)
+    conv = Conv2D(32, kernel_size=(3, 3), activation=activations.relu, padding='same')(conv)
     conv = MaxPooling2D(pool_size=(3, 3), strides=1)(conv)
-    conv = Conv2D(16, kernel_size=(3, 3), activation='relu', padding='same')(conv)
+    conv = Conv2D(16, kernel_size=(3, 3), activation=activations.relu, padding='same')(conv)
 
     flat = Flatten()(conv)
 
