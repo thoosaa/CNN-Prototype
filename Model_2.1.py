@@ -1,6 +1,7 @@
 from keras.layers import Input, Dropout, Conv2D, MaxPooling2D, Flatten, Dense
 from keras.models import Model
 from keras import activations
+from keras import backend as K
 from tensorflow import keras
 import sys
 
@@ -10,14 +11,16 @@ os.environ["PATH"] += os.pathsep + 'C:/Program Files/Graphviz/bin/'
 
 def build_model():
     input_shape = (224, 224, 3)
+    # 480 x 270 // 640 x 360
 
     inputs = Input(shape=input_shape)
 
-    conv = Conv2D(16, kernel_size=(3, 3), activation=activations.relu, padding='same')(inputs)
-    conv = MaxPooling2D(pool_size=(3, 3), strides=2)(conv)
-    conv = Conv2D(32, kernel_size=(3, 3), activation=activations.relu, padding='same')(conv)
-    conv = MaxPooling2D(pool_size=(3, 3), strides=1)(conv)
-    conv = Conv2D(16, kernel_size=(3, 3), activation=activations.relu, padding='same')(conv)
+    conv = Conv2D(96, kernel_size=(11, 11), activation=activations.relu, padding='valid')(inputs)
+    conv = MaxPooling2D(pool_size=(3, 3), strides=3)(conv)
+    conv = Conv2D(64, kernel_size=(3, 3), activation=activations.relu, padding='valid')(conv)
+    conv = MaxPooling2D(pool_size=(3, 3), strides=3)(conv)
+    conv = Conv2D(32, kernel_size=(3, 3), activation=activations.relu, padding='valid')(conv)
+    conv = MaxPooling2D(pool_size=(3, 3), strides=3)(conv)
 
     flat = Flatten()(conv)
 
@@ -75,7 +78,7 @@ def build_model():
 
     ycor_output = Dense(1, name="y_cor")(ycor)
 
-    mod = Model(inputs=inputs, outputs=[keys_output, click_output, xcor_output,ycor_output])
+    mod = Model(inputs=inputs, outputs=[keys_output, click_output, xcor_output, ycor_output])
 
     return mod
 
@@ -91,6 +94,8 @@ def save_model(model):
 
 
 model = build_model()
+plot_model(model)
+save_model(model)
 model.summary()
 
 

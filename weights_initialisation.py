@@ -21,5 +21,5 @@ def initialize_model_weights(filepath):
     return model
 
 
-model = initialize_model_weights('model_6.json')
-model.save_weights('model_6.h5')
+model = initialize_model_weights('model.json')
+model.save_weights('model.h5')
