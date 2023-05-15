@@ -1,9 +1,7 @@
 from keras.layers import Input, Dropout, Conv2D, MaxPooling2D, Flatten, Dense
 from keras.models import Model
 from keras import activations
-from keras import backend as K
 from tensorflow import keras
-import sys
 
 import os
 os.environ["PATH"] += os.pathsep + 'C:/Program Files/Graphviz/bin/'
